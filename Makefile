@@ -1,8 +1,6 @@
 
 AR=ar
 FLAGS= -Wall -g
-OBJECTS_MAIN=main.o
-OBJECTS_LIB=mylib.o
 OBJECTS_LIBLOOP=basicClassification.o advancedClassificationLoop.o
 OBJECTS_LIBREC=basicClassification.o advancedClassificationRecursion.o
 
