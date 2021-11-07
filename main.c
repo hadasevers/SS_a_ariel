@@ -7,10 +7,8 @@
 int main(){
 
     int min=0, max=0;
-    printf("enter a number \n");
-    scanf(" %d" , &min);
-    printf("enter a bigger number \n");
-    scanf(" %d" , &max);
+    scanf("%d%d" , &min , &max);
+    printf("\n");
     int num=min;
     if (min>max){
         num=max;
