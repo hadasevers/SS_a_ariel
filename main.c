@@ -8,7 +8,7 @@ int main(){
 
     int min=0, max=0;
     scanf("%d%d" , &min , &max);
-    printf("\n");
+    
     int num=min;
     if (min>max){
         num=max;
