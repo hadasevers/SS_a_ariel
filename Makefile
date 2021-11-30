@@ -8,7 +8,7 @@ all: connections libclasss.a
 
 
 connections: main.o libclasss.a
-	gcc $(FLAGS) -o mains main.o libclasss.a -LSF
+	gcc $(FLAGS) -o mains main.o libclasss.a
 
 
 
@@ -31,4 +31,4 @@ main.o: main.c my_mat.h
 .PHONY: clean all
 
 clean: 
-	rm -f *.o *.a mains 
+	rm -f *.o *.a connections 
