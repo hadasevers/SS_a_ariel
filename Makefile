@@ -8,7 +8,7 @@ all: connections libclasss.a
 
 
 connections: main.o libclasss.a
-	gcc $(FLAGS) -o mains main.o libclasss.a
+	gcc $(FLAGS) -o connections main.o libclasss.a
 
 
 
