@@ -4,10 +4,10 @@ FLAGS= -Wall -g
 
 
 
-all: mains libclasss.a
+all: connections libclasss.a
 
 
-mains: main.o libclasss.a
+connections: main.o libclasss.a
 	gcc $(FLAGS) -o mains main.o libclasss.a -LSF
 
 
