@@ -8,7 +8,7 @@ all: mains libclasss.a
 
 
 mains: main.o libclasss.a
-	gcc $(FLAGS) -o mains main.o libclasss.a
+	gcc $(FLAGS) -o mains main.o libclasss.a -LSF
 
 
 
