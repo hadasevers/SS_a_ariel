@@ -86,7 +86,6 @@ int main()
                     else break;
                 }              
             }
-            //printGraph(*head);
 
             if (i+1 < len){ 
                 if (strcmp(input[i+1], "A") == 0)
@@ -174,6 +173,12 @@ int main()
     }
     // in order to free all the nodes and edges
     deleteGraph(head);
+
+    // free all the strings in input array
+    for (int i = 0; i < len; ++i)
+    {
+       free(input[i]);
+    }
      
     free(input);
     free(head);
@@ -228,6 +233,7 @@ char** in_str(char **input, char *text){
             ++i;
 
         else{
+            
             input[len] = (char*)malloc((j+1)*sizeof(char));
             if (input[len] == NULL)
             {
@@ -238,11 +244,11 @@ char** in_str(char **input, char *text){
             {
                 input[len][k] = text[i+k];
             }
-            input[len][j] = '\0'; 
+            input[len][j] = '\0';    
             len++;
             i = i+j;
             j = 0;
-            free(input[len]);
+            //free(input[len]);
         }
     }
     return input;
