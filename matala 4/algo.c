@@ -21,10 +21,7 @@ void printGraph(pnode head);
 
 
 void build_graph(pnode *head, int num_of_node)
-{
-    //struct GRAPH_NODE_ *pnode = *head;
-    //printf("\n%d = num\n", num_of_node);
-   
+{   
     // if exist graph
     if (*head != NULL){
         deleteGraph(head);
@@ -37,16 +34,12 @@ void build_graph(pnode *head, int num_of_node)
 }
 
 
+
 void add_node(pnode *head, int id)
 { 
-    struct GRAPH_NODE_ *pnode = *head;        /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    } pnode = *head;*/
-
+    struct GRAPH_NODE_ *pnode = *head; 
     
-   // ckeck if this node exist
+   // check if this node exist
    while (pnode != NULL){
         if (pnode->node_id != id)
             pnode = pnode->next;
@@ -72,7 +65,7 @@ void add_node(pnode *head, int id)
 
             // delete all the edge that start in this node
             struct edge_ **prev_edge = &(pnode->edges);
-            struct edge_ *pedge = pnode->edges->next;
+            struct edge_ *pedge = pnode->edges;
             while (pedge != NULL)
             {
                 *prev_edge = pedge->next;
@@ -81,40 +74,15 @@ void add_node(pnode *head, int id)
             }
         }
     }
-
-   // printGraph(*head);
-   //}
-   /*
-   else{
-    pnode->node_id = id;
-    pnode->tag = 0;
-    pnode->weight = 0;
-    pnode->next = *head;
-    *head = pnode;
-   }    
-   */
-    //free(pnode);
 }
 
 
-void delete_node(pnode *head, int id)
-{ /*
-    struct GRAPH_NODE_ *pnode = (struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    }
-    struct GRAPH_NODE_ *next = (struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (next == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    }
-    pnode = *head;
-*/
 
+
+void delete_node(pnode *head, int id)
+{ 
     struct GRAPH_NODE_ *pnode = *head;
     struct GRAPH_NODE_ **prev = head;
-
 
     while (pnode != NULL)
     {
@@ -137,6 +105,7 @@ void delete_node(pnode *head, int id)
                     pedge = pedge->next;
                 }
             }
+            
         } 
         pnode = pnode->next;  
     }
@@ -150,7 +119,7 @@ void delete_node(pnode *head, int id)
 
                 // delete all the edge that start in this node
                 struct edge_ **prev_edge = &(pnode->edges);
-                struct edge_ *pedge = pnode->edges->next;
+                struct edge_ *pedge = pnode->edges;
                 while (pedge != NULL)
                 {
                     *prev_edge = pedge->next;
@@ -170,33 +139,18 @@ void delete_node(pnode *head, int id)
              pnode = pnode->next;
         }
     }
-
-
-    
-    
-   // free (pnode);
-    //free (pedge);
-    //free(next);
 }
 
 
 void add_edge(pnode *head, int src, int dest, int weight)
 {
-    struct GRAPH_NODE_ *pnode = (*head);     /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    } */
+    struct GRAPH_NODE_ *pnode = (*head);  
 
     struct edge_ *new_edge = (struct edge_*)malloc(1*sizeof(struct edge_));
     if (new_edge == NULL)
     {
         printf("There is not enough memory. Exiting.\n");
     }
-  // pnode->edges = (*head)->edges;
-  // pnode->next = (*head)->next;
-  // pnode->tag = (*head)->tag;
-   //pnode->weight = (*head)->weight;
 
    // find the dest node   
    while (pnode != NULL)
@@ -221,24 +175,12 @@ void add_edge(pnode *head, int src, int dest, int weight)
 
     new_edge->next = pnode->edges;
     pnode->edges = new_edge;
-
-   /*
-   pedge->next = pnode->edges;
-   pnode->edges = pedge;
-   */
-
-   //free(pnode);
-   //free(new_edge);
 }
 
 
 void deleteGraph(pnode* head)
 {
-    struct GRAPH_NODE_ *pnode = *head; /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    } pnode = *head; */
+    struct GRAPH_NODE_ *pnode = *head; 
 
     while (pnode != NULL)
     {
@@ -248,14 +190,11 @@ void deleteGraph(pnode* head)
 }
 
 
+
 void shortsPath(pnode *head, int start, int end)
 {
     daiktra(head, start, NULL);
-    struct GRAPH_NODE_ *pnode = *head;    /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    } pnode = *head; */
+    struct GRAPH_NODE_ *pnode = *head;
 
     // fint the pointer on end node
     while (pnode->node_id != end){
@@ -268,30 +207,17 @@ void shortsPath(pnode *head, int start, int end)
         printf("Dijsktra shortest path: %d\n", -1);
     else printf("Dijsktra shortest path: %d\n", weight);
 
-    //free(pnode);
 }
 
 
 
 void daiktra(pnode *head, int start, int *previous)
 {
-    struct GRAPH_NODE_ *pnode = *head;   /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    } pnode = *head;*/
+    struct GRAPH_NODE_ *pnode = *head;  
 
-    struct GRAPH_NODE_ *current;      /* = (struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (current == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    }*/
+    struct GRAPH_NODE_ *current;      
     
-    struct edge_ *pedge;      /* = (struct edge_*)malloc(1*sizeof(struct edge_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    }*/
+    struct edge_ *pedge;  
 
     int pvs = False;
     if (previous == NULL)
@@ -352,12 +278,6 @@ void daiktra(pnode *head, int start, int *previous)
             pedge = pedge->next;
         }
     }
-    //free(pnode);
-    //free(current);
-    //free(pedge);
-    //if (pvs == True)
-      //  free(previous);
-    //return head;
 }
 
 
@@ -365,11 +285,7 @@ void daiktra(pnode *head, int start, int *previous)
 // return the node with min weight
 int get_min(pnode *queue)
 {
-    struct GRAPH_NODE_ *pnode = *queue;    /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL)
-    {
-        printf("There is not enough memory. Exiting.\n");
-    } pnode = *queue;*/
+    struct GRAPH_NODE_ *pnode = *queue; 
 
     int min_id = -1;
     int min_weight = 1000000;
@@ -396,11 +312,7 @@ void TSP(pnode *head, int *list_nodes, int k)
     if (head_list == NULL){
         printf("There is not enough memory. Exiting.\n");
     }
-    struct GRAPH_NODE_ *pnode = *head; /*(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL){
-        printf("There is not enough memory. Exiting.\n");
-    }*/
-
+    struct GRAPH_NODE_ *pnode = *head; 
     int *list_weight = (int*)malloc(k*sizeof(int));
     if (list_weight == NULL){
         printf("There is not enough memory. Exiting.\n");
@@ -464,9 +376,6 @@ void TSP(pnode *head, int *list_nodes, int k)
             int min_node = -1;
             int weight = 10000000;
 
-            //pnode = *head_list;
-            // find the lowest weight id_node
-            //while (pnode != NULL)
             
             for (int j=0; j<k; ++j)
             {
@@ -474,7 +383,6 @@ void TSP(pnode *head, int *list_nodes, int k)
                     weight = head_list[j]->weight;
                     min_node = head_list[j]->node_id;
                 }
-                //pnode = pnode->next;
             }
             
             // if there isn't route that pass at all the node in the list, that start in this node
@@ -504,7 +412,6 @@ void TSP(pnode *head, int *list_nodes, int k)
                         head_list[p]->tag = now_tag;
                         p = k;
                     }
-                    //else pnode = pnode->next; 
                 }
                 prev = previous[prev];
             } 
@@ -518,20 +425,13 @@ void TSP(pnode *head, int *list_nodes, int k)
     }
     if (route == 1000000) route = -1;
     free(list_weight);
-    //free(pnode);
     free(head_list);
     free(previous);
-   // printf("\n");
     printf("TSP shortest path: %d\n", route);   
 }
 
 
 int tag(struct GRAPH_NODE_ **head_list, int now_tag, int k){
-    /*struct GRAPH_NODE_ *pnode = *head_list;(struct GRAPH_NODE_*)malloc(1*sizeof(struct GRAPH_NODE_));
-    if (pnode == NULL){
-        printf("There is not enough memory. Exiting.\n");
-    }
-    pnode = *head_list;*/
 
     int ans = False;
 
@@ -540,7 +440,6 @@ int tag(struct GRAPH_NODE_ **head_list, int now_tag, int k){
         if (head_list[i]->tag != now_tag)
             ans = True;
     }
-    //free(pnode);
     return ans;
 }
 
